@@ -25,74 +25,7 @@ export default function VotingPortal() {
   const [positions, setPositions] = useState([]);
   const navigate = useNavigate();
 
-  const positions2 = [
-    {
-      id: 'president',
-      title: 'President',
-      candidates: [
-        { id: 'p1', name: 'Ahmed Suleiman', votes: 234, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=250&fit=crop&crop=face' },
-        { id: 'p2', name: 'Fatima Ibrahim', votes: 189, image: 'https://images.unsplash.com/photo-1494790108755-2616b612b789?w=200&h=250&fit=crop&crop=face' },
-        { id: 'p3', name: 'Musa Garba', votes: 156, image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=250&fit=crop&crop=face' },
-        { id: 'p4', name: 'Aisha Mohammed', votes: 142, image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=250&fit=crop&crop=face' },
-        { id: 'p5', name: 'Ibrahim Yusuf', votes: 98, image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=250&fit=crop&crop=face' }
-      ]
-    },
-    {
-      id: 'vicePresident',
-      title: 'Vice President',
-      candidates: [
-        { id: 'vp1', name: 'Khadija Aliyu', votes: 198, image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=250&fit=crop&crop=face' },
-        { id: 'vp2', name: 'Usman Bello', votes: 176, image: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=200&h=250&fit=crop&crop=face' },
-        { id: 'vp3', name: 'Amina Hassan', votes: 145, image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=250&fit=crop&crop=face' },
-        { id: 'vp4', name: 'Abdullahi Sani', votes: 132, image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=250&fit=crop&crop=face' },
-        { id: 'vp5', name: 'Zainab Umar', votes: 89, image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&h=250&fit=crop&crop=face' }
-      ]
-    },
-    {
-      id: 'secretary',
-      title: 'Secretary General',
-      candidates: [
-        { id: 's1', name: 'Hauwa Adamu', votes: 167, image: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=250&fit=crop&crop=face' },
-        { id: 's2', name: 'Salisu Ahmad', votes: 154, image: 'https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=200&h=250&fit=crop&crop=face' },
-        { id: 's3', name: 'Safiya Musa', votes: 142, image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=250&fit=crop&crop=face' },
-        { id: 's4', name: 'Bashir Yunusa', votes: 118, image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=200&h=250&fit=crop&crop=face' },
-        { id: 's5', name: 'Mariam Kabir', votes: 95, image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=250&fit=crop&crop=face' }
-      ]
-    },
-    {
-      id: 'treasurer',
-      title: 'Treasurer',
-      candidates: [
-        { id: 't1', name: 'Yusuf Abdullahi', votes: 189, image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&h=250&fit=crop&crop=face' },
-        { id: 't2', name: 'Hadiza Lawal', votes: 167, image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&h=250&fit=crop&crop=face' },
-        { id: 't3', name: 'Nuhu Ibrahim', votes: 134, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=250&fit=crop&crop=face' },
-        { id: 't4', name: 'Rukayya Baba', votes: 121, image: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=200&h=250&fit=crop&crop=face' },
-        { id: 't5', name: 'Aliyu Hassan', votes: 87, image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=200&h=250&fit=crop&crop=face' }
-      ]
-    },
-    {
-      id: 'pro',
-      title: 'Public Relations Officer',
-      candidates: [
-        { id: 'pr1', name: 'Bilkisu Audu', votes: 178, image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&h=250&fit=crop&crop=face' },
-        { id: 'pr2', name: 'Garba Suleiman', votes: 156, image: 'https://images.unsplash.com/photo-1522556189639-b150ed9c4330?w=200&h=250&fit=crop&crop=face' },
-        { id: 'pr3', name: 'Asma Ibrahim', votes: 143, image: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=200&h=250&fit=crop&crop=face' },
-        { id: 'pr4', name: 'Sanusi Yakubu', votes: 129, image: 'https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?w=200&h=250&fit=crop&crop=face' },
-        { id: 'pr5', name: 'Nafisa Aminu', votes: 102, image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=200&h=250&fit=crop&crop=face' }
-      ]
-    },
-    {
-      id: 'welfare',
-      title: 'Welfare Director',
-      candidates: [
-        { id: 'w1', name: 'Jamila Usman', votes: 201, image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=250&fit=crop&crop=face' },
-        { id: 'w2', name: 'Ahmad Danjuma', votes: 165, image: 'https://images.unsplash.com/photo-1504593811423-6dd665756598?w=200&h=250&fit=crop&crop=face' },
-        { id: 'w3', name: 'Maryam Tijani', votes: 148, image: 'https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?w=200&h=250&fit=crop&crop=face' },
-        { id: 'w4', name: 'Idris Mohammed', votes: 117, image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671d66?w=200&h=250&fit=crop&crop=face' },
-        { id: 'w5', name: 'Zara Aliyu', votes: 94, image: 'https://images.unsplash.com/photo-1494790108755-2616b612b789?w=200&h=250&fit=crop&crop=face' }
-      ]
-    }
-  ];
+
 
   const handleVote = (positionId, candidateId) => {
     setSelectedVotes(prev => ({
@@ -104,7 +37,8 @@ export default function VotingPortal() {
   const handleSlide = (positionId, direction) => {
     setCurrentSlides(prev => {
       const currentIndex = prev[positionId] || 0;
-      const maxIndex = positions.find(p => p.id === positionId).candidates.length - 1;
+      const positionData = positions.find(p => p.position === positionId);
+      const maxIndex = positionData.candidates.length - 1;
       let newIndex;
       
       if (direction === 'next') {
@@ -127,20 +61,31 @@ export default function VotingPortal() {
   };
 
   const handleLogin = () => {
+    const id = toast.loading('Submitting your votes...');
     if (!registrationNumber || !password) {
       toast.info('Please fill in both registration number and password.');
       return;
     }
-    console.log('Vote submission:', { 
-      votes: selectedVotes, 
-      registrationNumber, 
-      password 
-    });
-    setIsDialogOpen(false);
-    toast.success('Your votes have been submitted successfully!');
-    setSelectedVotes({});
-    setRegistrationNumber('');
-    setPassword('');
+
+    try{
+      const encodedRegNo = btoa(registrationNumber);
+      const response = axios.post("https://zvfqblmbmwfscgzhkguk.supabase.co/functions/v1/amses/vote", selectedVotes, {
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${encodedRegNo}`
+        }
+      });
+      console.log('Vote submission:', response.data);
+        
+      setSelectedVotes({});
+      setRegistrationNumber('');
+      setPassword('');
+      return toast.success('Votes submitted successfully!', { id });
+    }catch(err){
+      console.error('Error submitting votes:', err);
+      toast.error('Failed to submit votes. Please try again.', { id });
+      return;
+    }
   };
 
   const totalVotesSelected = Object.keys(selectedVotes).length;
@@ -153,7 +98,7 @@ export default function VotingPortal() {
       toast.success('Positions fetched successfully!', { id });
     }catch(err){
       console.error('Error fetching positions:', err);
-      toast.error('Failed to fetch positions. Please try again.', { id });
+      return toast.error('Failed to fetch positions. Please try again.', { id });
     }
   }
 
@@ -218,16 +163,16 @@ export default function VotingPortal() {
         {/* Voting Sections */}
         <div className="max-w-6xl mx-auto space-y-8">
           {positions.map((position) => {
-            const currentIndex = currentSlides[position.id] || 0;
+            const currentIndex = currentSlides[position.position] || 0;
             const currentCandidate = position.candidates[currentIndex];
-            const isSelected = selectedVotes[position.id] === currentCandidate.id;
+            const isSelected = selectedVotes[position.position] === currentCandidate.id;
             
             return (
-              <Card key={position.id} className="bg-white/5 backdrop-blur-sm border-white/10">
+              <Card key={position.position} className="bg-white/5 backdrop-blur-sm border-white/10">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-2xl font-bold text-white">{position.title}</h3>
-                    {selectedVotes[position.id] && (
+                    {selectedVotes[position.position] && (
                       <Badge variant="secondary" className="bg-green-500/20 text-green-400 border-green-400/20">
                         <Check className="w-4 h-4 mr-1" />
                         Voted
@@ -240,7 +185,7 @@ export default function VotingPortal() {
                       variant="ghost"
                       size="lg"
                       className="text-white bg-[#1348a0] hover:bg-white/10 p-4 h-auto"
-                      onClick={() => handleSlide(position.id, 'prev')}
+                      onClick={() => handleSlide(position.position, 'prev')}
                     >
                       <ChevronLeft className="w-8 h-8" />
                     </Button>
@@ -252,7 +197,7 @@ export default function VotingPortal() {
                             ? 'border-2 border-blue-400 bg-blue-500/20 transform scale-105'
                             : 'border border-white/20 bg-white/5 hover:border-white/40 hover:bg-white/10'
                         }`}
-                        onClick={() => handleVote(position.id, currentCandidate.id)}
+                        onClick={() => handleVote(position.position, currentCandidate.id)}
                       >
                         <CardContent className="p-6 text-center">
                           <div className="relative mb-4">
@@ -270,7 +215,7 @@ export default function VotingPortal() {
                           <h4 className="font-bold text-white text-xl mb-2">{currentCandidate.name}</h4>
                           <div className="flex items-center justify-center text-gray-300 mb-4">
                             <User className="w-4 h-4 mr-2" />
-                            <span>{currentCandidate.votes} votes</span>
+                            <span>{currentCandidate.vote_count} votes</span>
                           </div>
                           <Button
                             className={`w-full ${
@@ -280,7 +225,7 @@ export default function VotingPortal() {
                             }`}
                             onClick={(e) => {
                               e.stopPropagation();
-                              handleVote(position.id, currentCandidate.id);
+                              handleVote(position.position, currentCandidate.id);
                             }}
                           >
                             {isSelected ? 'SELECTED' : 'VOTE'}
@@ -299,7 +244,7 @@ export default function VotingPortal() {
                       variant="ghost"
                       size="lg"
                       className="text-white bg-[#1348a0] hover:bg-white/10 p-4 h-auto"
-                      onClick={() => handleSlide(position.id, 'next')}
+                      onClick={() => handleSlide(position.position, 'next')}
                     >
                       <ChevronRight className="w-8 h-8" />
                     </Button>
