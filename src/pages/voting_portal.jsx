@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { Vote, Shield, User, Check, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { toast, Toaster } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function VotingPortal() {
   const [selectedVotes, setSelectedVotes] = useState({});
@@ -21,9 +22,10 @@ export default function VotingPortal() {
   const [registrationNumber, setRegistrationNumber] = useState('');
   const [password, setPassword] = useState('');
   const [currentSlides, setCurrentSlides] = useState({});
+  const [positions, setPositions] = useState([]);
   const navigate = useNavigate();
 
-  const positions = [
+  const positions2 = [
     {
       id: 'president',
       title: 'President',
@@ -143,6 +145,22 @@ export default function VotingPortal() {
 
   const totalVotesSelected = Object.keys(selectedVotes).length;
 
+  const fetchPositions = async() => {
+    const id = toast.loading('Fetching positions...');
+    try{
+      const response = await axios.get("https://zvfqblmbmwfscgzhkguk.supabase.co/functions/v1/amses/candidates");
+      setPositions(response.data.data);
+      toast.success('Positions fetched successfully!', { id });
+    }catch(err){
+      console.error('Error fetching positions:', err);
+      toast.error('Failed to fetch positions. Please try again.', { id });
+    }
+  }
+
+  useEffect(() => {
+    fetchPositions();
+  },[]);
+
   return (
     <div className="w-[100vw] sm:w-[99vw] min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800">
       {/* Animated Background Elements */}
@@ -239,7 +257,7 @@ export default function VotingPortal() {
                         <CardContent className="p-6 text-center">
                           <div className="relative mb-4">
                             <img
-                              src={currentCandidate.image}
+                              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=250&fit=crop&crop=face"
                               alt={currentCandidate.name}
                               className="aspect-square w-full sm:w-32 sm:h-40 rounded-lg mx-auto object-cover border-2 border-white/20"
                             />
