@@ -60,7 +60,7 @@ export default function VotingPortal() {
     setIsDialogOpen(true);
   };
 
-  const handleLogin = () => {
+  const handleLogin = async() => {
     const id = toast.loading('Submitting your votes...');
     if (!registrationNumber || !password) {
       toast.info('Please fill in both registration number and password.');
@@ -68,11 +68,11 @@ export default function VotingPortal() {
     }
 
     try{
-      const encodedRegNo = btoa(registrationNumber);
-      const response = axios.post("https://zvfqblmbmwfscgzhkguk.supabase.co/functions/v1/amses/vote", selectedVotes, {
+      const encodedData = btoa(registrationNumber + ':' + password);
+      const response = await axios.post("https://zvfqblmbmwfscgzhkguk.supabase.co/functions/v1/amses/vote", selectedVotes, {
         headers: {
           'Content-Type': 'application/json',
-          "Authorization": `Bearer ${encodedRegNo}`
+          "Authorization": `Basic ${encodedData}`
         }
       });
       console.log('Vote submission:', response.data);
@@ -83,8 +83,12 @@ export default function VotingPortal() {
       return toast.success('Votes submitted successfully!', { id });
     }catch(err){
       console.error('Error submitting votes:', err);
-      toast.error('Failed to submit votes. Please try again.', { id });
-      return;
+      setSelectedVotes({});
+      setRegistrationNumber('');
+      setPassword('');
+      return toast.error(err?.response?.data?.message||'Failed to submit votes. Please try again.', { id });
+    }finally{
+      setIsDialogOpen(false);
     }
   };
 
