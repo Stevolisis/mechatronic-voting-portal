@@ -75,19 +75,18 @@ export default function VotingPortal() {
           "Authorization": `Basic ${encodedData}`
         }
       });
+      if(response.data.failure){
+        return toast.error(response.data.message || 'Failed to submit votes. Please try again.', { id });
+      }
       console.log('Vote submission:', response.data);
-        
       setSelectedVotes({});
-      setRegistrationNumber('');
-      setPassword('');
       return toast.success('Votes submitted successfully!', { id });
     }catch(err){
       console.error('Error submitting votes:', err);
-      setSelectedVotes({});
-      setRegistrationNumber('');
-      setPassword('');
       return toast.error(err?.response?.data?.message||'Failed to submit votes. Please try again.', { id });
     }finally{
+      setRegistrationNumber('');
+      setPassword('');
       setIsDialogOpen(false);
     }
   };
